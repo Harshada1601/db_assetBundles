@@ -1,0 +1,34 @@
+# This is a Declarative Automation Bundle definition for dabProject.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+
+bundle:
+  name: dabProject
+  uuid: 69b5f13d-15ad-4847-8cb0-a18451975fb1
+
+include:
+  - resources/*.yml
+  - resources/*/*.yml
+
+targets:
+
+  dev:
+    mode: development
+    default: true
+    presets:
+      name_prefix: dev_${workspace.current_user.short_name}_
+      source_linked_deployment: false
+    workspace:
+      host: https://dbc-b54014bc-1093.cloud.databricks.com/
+
+  prod:
+    mode: production
+    workspace:
+      host: https://dbc-b54014bc-1093.cloud.databricks.com/
+      root_path: /Workspace/Users/ajabeharshada1630@gmail.com/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog_name: catassetbundles
+      schema: prod
+
+    permissions:
+      - user_name: ajabeharshada1630@gmail.com
+        level: CAN_MANAGE

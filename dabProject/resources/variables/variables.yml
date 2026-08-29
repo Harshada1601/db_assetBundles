@@ -1,0 +1,8 @@
+variables:
+  catalog_name:
+    description: The catalog to use
+    default: catassetbundles
+
+  schema:
+    description: The schema to use
+    default: dev
